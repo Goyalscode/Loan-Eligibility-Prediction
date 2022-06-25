@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan ELigibility Prediction</title>  <!-- title of the html file -->
+    <link rel = "stylesheet" href = "{{ url_for('static',filename='styles/style.css') }}">  <!-- including the css file for styling the html content -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  <!-- including jquery -->
+    <script src = "{{ url_for('static', filename = 'scripts/validate.js') }}"></script>  <!-- including javascript file for validation of form input -->
+</head>
+
+<body>
+    <div id = "header">
+    <h1 style = "padding-left: 463px;">Loan Eligibility Prediction </h1>
+    </div>
+    <div id = outer>
+    
+    {% if status==1 %}  <!-- jinja template, this will run only when status is 1, which is set in python file, app.py-->
+        <div id = "out">
+        <p  style = "padding-left:145px; font-size:larger; color:black;"><u>Prediction Status</u> : {{ pred }}</p></br>
+        
+        {% block javascript %}  <!-- use of jinja template, to include javascript -->
+            <script>
+                setTimeout(function(){
+                    $('#out').hide();
+                }, 0);
+                setTimeout(function(){
+                    $('#out').slideDown("slow");  // this will show the div downwards, after 300 milliseconds, when prediction is made
+                }, 300);
+            </script>
+        {% endblock %} 
+        
+        <span style = "padding-left: 207px;"></span>
+        <input type ="button" class = "prompt" value = "Close" onClick="$('#out').slideUp('slow')">  <!-- this is the button to close the div, done through jquery-->
+        </div>
+    {% endif %}  <!-- if block ended -->
+    
+    <div id = "form">  <!-- this is the HTML form, for taking user inputs-->
+    <p style = "font-size: larger; padding-left: 470px; font-weight: bold; color:black;"><u>Fill the Details below to make a Prediction</u></p></br>
+    <form name = "inpform" onsubmit="return formValidate()" action = "/prediction" method = "post" autocomplete = "on">
+    
+        <!--we have used post method for sending form data to the server, on submitting, first inputs will be
+            validated using formValidate() funciton in javascript file -->
+        
+        <label class = "form_el">Gender</label> : <label style="padding-left: 171px;"></label>  <!-- taking gender as input -->
+        <input type="radio" name = "gender" id = "gen_male" value = "Male">Male  <!-- radio button for inputting gender -->
+        <input type="radio" name = "gender" id = "gen_fem" value = "Female ">Female<br/><br/>
+                
+        <label class = "form_el">Marital Status</label> : <label style="padding-left: 128px;"></label>  <!-- taking marital status as input -->
+        <input type="radio" name = "married" id = "mar_yes"  value = "Yes">Yes
+        <input type="radio" name = "married" id = "mar_no"  value = "No">No<br/><br/>
+        
+        <!--we use the name attribute to refer that input field on the server,
+            id and class are used for referring to that element for styling, or in the
+            javascript file -->
+
+        <label class = "form_el">No. of Dependents</label> : <label style="padding-left: 102px;"></label>  <!-- taking no. of dependents as input -->
+        <input type="number" name = "dependents" id = "dep"><br/><br/>
+        
+        <label class = "form_el">Self-Employeed</label> : <label style="padding-left: 116px;"></label>  <!-- taking employment status as input -->
+        <input type="radio" name = "selfemp" id = "emp_yes"  value = "Yes">Yes
+        <input type="radio" name = "selfemp" id = "emp_no"  value = "No">No<br/><br/>
+        
+        <label class = "form_el">Education</label> : <label style="padding-left: 154px;"></label>  <!-- taking education status as input -->
+        <input type="radio" name = "education" id = "edu_yes"  value = "graduate">Graduate
+        <input type="radio" name = "education" id = "edu_no"  value = "non-graduate">Non-Graduate<br/><br/>
+
+        <label class = "form_el">Credit History</label> : <label style="padding-left: 128px;"></label>  <!-- taking credit history as input -->
+        <input type="radio" name = "credit" id = "cred_yes"  value = "Yes">Yes
+        <input type="radio" name = "credit" id = "cred_no"  value = "No">No<br/><br/>
+
+        <label class = "form_el">Property Area :</label><label style="padding-left: 134px;"></label>  <!-- taking property area as input using select input -->
+        <select name = "proparea">
+        <option value = "Select" id = "propselect" >Select Property Area</option>
+        <option value = "rural" id = "prop_rur" >Rural</option>
+        <option value = "urban" id = "prop_urb" >Urban</option>
+        <option value = "semiurban" id = "prop_semi" >Semi-Urban</option>
+        </select><br/><br/>
+        
+        <label class = "form_el">Applicant's Monthly Income</label> : <label style="padding-left: 40px;"></label>  <!-- taking monthly income of applicant -->
+        <input type="text" name = "appli"><br/><br/>
+        
+        <label class = "form_el">Co-Applicant's Monthly Income :<label style="padding-left: 16px;"></label></label>  <!-- taking monthly income of Co-applicant -->
+        <input type="text" name = "Coapp"><br/><br/>
+        
+        <label class = "form_el">Loan Amount (Monthly)</label> :<label style="padding-left: 65px;"></label>  <!-- taking monthly loan amount -->
+        <input type="text" name = "LoanAmount"><br/><br/>
+        
+        <label class = "form_el">Loan Amount Term (Months)</label> :<label style="padding-left: 34px;"></label>  <!-- loan term in months -->
+        <input type="text" name = "loanterm"><br/><br/>
+        
+        <div id = "buttons">  <!-- div, in which reset and submit buttons are defined -->
+        <label style="padding-left: 128px;"></label>
+        <input type = "reset" name = "reset" value = "Reset">  <!-- button for resetting the form input --> 
+        
+        <label style="padding-left: 50px;"></label>
+        <input type = "submit" name = "submit" value = "Predict">  <!-- button for submitting the form data -->
+        </div>
+
+    </form>  <!-- end of the form -->
+    </div>  <!-- end of the division in which the form is defined--> 
+    </div>  <!-- end of the outer division, having id as outer-->
+</body>
+</html>

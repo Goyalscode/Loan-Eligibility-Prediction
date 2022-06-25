@@ -1,0 +1,68 @@
+/* Css file for adding styles to the html file*/
+
+div#header{  /* styles the div having id as header */
+    color : white;
+    background-color: orange;
+    padding: 7px;
+    padding-left: 27px;
+    margin : 3px;
+}
+
+div#form{  /* styles the div having id as form */
+    color : white;
+    background-color: brown;
+    padding: 10px;
+    border : 10px solid gray;
+    border-radius: 2%;
+    margin:20px;
+}
+
+.form_el{  /* styles all elements having class as form_el */
+    padding-left: 430px;
+    font-weight: 400;
+}
+
+#outer{  /* styles the element having id as outer */
+    background-color: aliceblue;
+    padding: 2px;
+    margin : 3px;
+}
+
+input[type="submit"]{  /* styles input elements having type as submit */
+    border-radius: 2px;
+    padding-top: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+input[type="reset"]{  /* styles input elements having type as reset */
+    border-radius: 2px;
+    padding-top: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+div#out{  /* styles div having id as out */
+    color : white;
+    margin-left : 400px;
+    margin-right: 400px;
+    margin-top : 5px;
+    margin-bottom: 5px;
+    background-color: aliceblue;
+    border : 4px ridge black;
+    border-radius: 20px;
+}
+
+.prompt{  /* styles elements having class as prompt */
+    border-radius : 15px;
+}
+
+#buttons{  /* styles the element having id as buttons */
+    margin-left : 425px;
+    margin-right: 410px;
+    margin-top : 5px;
+    margin-bottom: 5px;
+    background-color: brown;
+    border: 2px solid black;
+    border-radius: 7px;
+}
