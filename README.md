@@ -7,7 +7,7 @@
 ### Section - A
 ### Roll No - 2014787
 #
-### Website - https://predict-loan-eligibility.herokuapp.com/
+### Website - https://predict-loan-eligibility-byprg.onrender.com/
 #
 ### Steps to manually run the project on local system</br></br>
 Navigate to the path (in command prompt) where you want to download project files, then run -
